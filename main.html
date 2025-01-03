@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSINT Инструмент — Поиск информации и базы данных 8.6 ТБ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Общие стили */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #f1f1f1;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #00ff00, #009900), url('https://via.placeholder.com/1920x600/009900/ffffff?text=OSINT+Tool') no-repeat center center;
+            background-size: cover;
+            padding: 120px 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        header p {
+            font-size: 20px;
+            font-weight: 400;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: #333;
+            padding: 15px 0;
+            z-index: 5;
+            position: relative;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 10px 20px;
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: #00ff00;
+            transform: scale(1.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .section {
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 50px 0;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .section:hover {
+            transform: translateY(-10px);
+        }
+
+        .section h2 {
+            font-size: 32px;
+            color: #00ff00;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section h2 i {
+            margin-right: 10px;
+        }
+
+        .section p, .section ul li {
+            font-size: 18px;
+            color: #f1f1f1;
+        }
+
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .section ul li {
+            margin: 10px 0;
+        }
+
+        .cta-button {
+            background-color: #00ff00;
+            padding: 18px 35px;
+            font-size: 22px;
+            color: #121212;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            background-color: #009900;
+            transform: scale(1.05);
+        }
+
+        .buy-button {
+            background-color: #ff6600;
+            padding: 18px 35px;
+            font-size: 22px;
+            color: #121212;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .buy-button:hover {
+            background-color: #e65c00;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: #00ff00;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Мобильные стили */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 36px;
+            }
+
+            nav a {
+                font-size: 16px;
+                margin: 0 10px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .cta-button {
+                font-size: 18px;
+                padding: 12px 24px;
+            }
+
+            .buy-button {
+                font-size: 18px;
+                padding: 12px 24px;
+            }
+        }
+
+        /* Уменьшаем ширину кнопок на мобильных экранах */
+        @media (max-width: 480px) {
+            nav a {
+                margin: 10px 5px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Заголовок -->
+<header>
+    <h1 class="fade-in">OSINT Инструмент для поиска и анализа информации</h1>
+    <p class="fade-in">Мощные базы данных объемом 8.6 ТБ и инструменты для анализа открытых источников. Все для вашего исследования и безопасности.</p>
+</header>
+
+<!-- Навигация -->
+<nav>
+    <a href="#info">О программе</a>
+    <a href="#osint">Как работает OSINT?</a>
+    <a href="#features">Особенности</a>
+    <a href="#device-support">Поддержка устройств</a>
+    <a href="#privacy">Конфиденциальность</a>
+</nav>
+
+<!-- Контейнер с содержимым -->
+<div class="container">
+    <!-- Описание программы -->
+    <section id="info" class="section fade-in">
+        <h2><i class="fas fa-info-circle"></i>О программе</h2>
+        <p>Наш инструмент предоставляет доступ к 8.6 ТБ баз данных, которые включают данные из судебных реестров, социальных сетей, публичных записей и других открытых источников. Воспользуйтесь нашим инструментом для анализа и поиска информации по различным параметрам.</p>
+        <p><strong>Что вы можете делать:</strong></p>
+        <ul>
+            <li><strong>Поиск по телефонным номерам</strong> — найдите владельцев номеров и их активность в интернете.</li>
+            <li><strong>Анализ email-адресов</strong> — узнайте, где используется адрес и получите данные о владельце.</li>
+            <li><strong>Поиск публичных записей</strong> — доступ к открытым государственным и частным записям, включая суды и реестры.</li>
+            <li><strong>Поиск по социальным сетям</strong> — анализ аккаунтов в популярных социальных сетях.</li>
+        </ul>
+    </section>
+
+    <!-- Как работает OSINT -->
+    <section id="osint" class="section fade-in">
+        <h2><i class="fas fa-search"></i>Как работает OSINT?</h2>
+        <p>OSINT (Open Source Intelligence) — это метод сбора информации из открытых источников, таких как публичные записи, социальные сети, интернет-форумы и другие ресурсы. Мы используем эти данные для создания подробных отчетов, которые могут помочь в различных исследованиях и расследованиях.</p>
+        <p><strong>Пример использования:</strong></p>
+        <ul>
+            <li>Поиск подозрительных аккаунтов или номеров телефонов, связанных с мошенничеством.</li>
+            <li>Анализ поведения пользователей в социальных сетях для выявления возможных угроз безопасности.</li>
+            <li>Сбор информации для юридических расследований и проверок.</li>
+        </ul>
+    </section>
+
+    <!-- Особенности программы -->
+    <section id="features" class="section fade-in">
+        <h2><i class="fas fa-cogs"></i>Особенности нашего инструмента</h2>
+        <ul>
+            <li><strong>Интуитивно понятный интерфейс:</strong> Простота в использовании, доступная даже для новичков.</li>
+            <li><strong>Мгновенный поиск:</strong> Получите результаты почти сразу после подачи запроса.</li>
+            <li><strong>Широкие возможности фильтрации:</strong> Множество параметров для точного поиска.</li>
+            <li><strong>Безопасность:</strong> Все данные обрабатываются с учетом высших стандартов безопасности.</li>
+            <li><strong>Регулярные обновления:</strong> Базы данных обновляются для обеспечения актуальности информации.</li>
+        </ul>
+        <!-- Кнопка "Приобрести" -->
+        <a href="https://t.me/nexorshopbot" target="_blank">
+            <button class="buy-button">Приобрести</button>
+        </a>
+    </section>
+
+    <!-- Поддержка устройств -->
+    <section id="device-support" class="section fade-in">
+        <h2><i class="fas fa-mobile-alt"></i>Поддержка устройств</h2>
+        <p>Наш OSINT инструмент поддерживает все современные устройства, включая ПК, планшеты и смартфоны. Мы разработали нашу программу с учетом многозадачности, чтобы она была доступна на всех платформах.</p>
+        <p><strong>Устройства, на которых работает программа:</strong></p>
+        <ul>
+            <li><strong>ПК и ноутбуки:</strong> Работает на Windows, macOS и Linux.</li>
+            <li><strong>Мобильные устройства:</strong> Программа оптимизирована для Android и iOS.</li>
+        </ul>
+        <p>Программа использует адаптивный дизайн, что позволяет вам получать доступ и работать с инструментом без ограничений независимо от устройства.</p>
+    </section>
+
+    <!-- Политика конфиденциальности -->
+    <section id="privacy" class="section fade-in">
+        <h2><i class="fas fa-user-shield"></i>Конфиденциальность и безопасность</h2>
+        <p>Мы строго соблюдаем политику конфиденциальности. Все данные, которые вы передаете через нашу платформу, защищены на всех этапах обработки. Мы не передаем информацию третьим лицам и обеспечиваем полную анонимность ваших запросов.</p>
+        <p>Наши системы используют передовые методы шифрования и защиты данных для предотвращения утечек и утрат.</p>
+
+        <h3>Возврат средств</h3>
+        <p>Обращаем ваше внимание, что возврат средств за продукт не предоставляется. Пожалуйста, убедитесь, что вы ознакомились с функционалом программы и её возможностями перед покупкой.</p>
+
+        <h3>Утеря аккаунта</h3>
+        <p>В случае утери доступа к аккаунту, на котором была приобретена программа, возврата продукта не предоставляется. Рекомендуем сохранять информацию о вашем аккаунте в надежном месте.</p>
+    </section>
+</div>
+
+<!-- Футер -->
+<footer>
+    <p>&copy; 2025 OSINT Инструмент. Все права защищены. <a href="#privacy">Политика конфиденциальности</a>.</p>
+</footer>
+
+</body>
+</html>
+
